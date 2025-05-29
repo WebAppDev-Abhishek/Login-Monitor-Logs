@@ -84,15 +84,9 @@ Monitor logs: http://localhost:3000/logs
    You can access the monitor logs page directly or by clicking the "View Monitor Logs" link on the login or success pages:  
    http://localhost:3000/logs  
    This page will display a table of all recorded login attempts, including their status and IP address.
+   
+![screencapture-localhost-3000-login-2025-05-29-15_05_48](https://github.com/user-attachments/assets/2618f955-a258-41d9-ab43-cd4dd16cebdf)
 
-## **Future Improvements / Considerations**
+![screencapture-localhost-3000-logs-2025-05-29-15_06_23](https://github.com/user-attachments/assets/2c45865a-be48-4866-9777-62b5eddde784)
 
-* **User Management:** Implement a proper user registration and management system (e.g., using a more robust database like PostgreSQL or MongoDB).  
-* **Password Hashing:** Use a strong password hashing library like bcrypt to securely store user passwords (never store plain text passwords in a real application\!).  
-* **Session Management:** Implement sessions or JWTs for persistent user authentication.  
-* **Input Validation:** Add more robust server-side input validation beyond basic sanitization.  
-* **Error Handling:** Implement more comprehensive error handling and logging for production environments.  
-* **Environment Variables:** Use environment variables for sensitive data (e.g., database connection strings, secret keys).  
-* **Frontend Framework:** For a more complex frontend, consider using a framework like React, Vue, or Angular instead of just EJS.  
-* **Styling:** Further enhance the UI/UX with more custom CSS or a component library.  
-* **Database Scaling:** For larger applications, consider a more scalable database solution.
+
