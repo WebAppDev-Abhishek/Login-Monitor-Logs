@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Logs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and general layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background */
+            padding: 2rem;
+        }
+        .container {
+            background-color: #ffffff; /* White container background */
+            padding: 2rem;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 900px;
+            margin: 0 auto; /* Center the container */
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb; /* Light gray border */
+        }
+        th {
+            background-color: #f9fafb; /* Lighter background for headers */
+            font-weight: 600;
+            color: #374151; /* Darker text for headers */
+        }
+        tr:hover {
+            background-color: #f3f4f6; /* Subtle hover effect for rows */
+        }
+        .status-success {
+            color: #059669; /* Green for success */
+            font-weight: 500;
+        }
+        .status-failure {
+            color: #dc2626; /* Red for failure */
+            font-weight: 500;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Monitor Logs</h2>
+
+        <% if (error) { %>
+            <div class="message error">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <% if (logs.length === 0) { %>
+            <p class="text-center text-gray-600">No login attempts recorded yet.</p>
+        <% } else { %>
+            <div class="overflow-x-auto rounded-lg shadow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Timestamp</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                            <th>IP Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% logs.forEach(log => { %>
+                            <tr>
+                                <td><%= log.id %></td>
+                                <td><%= new Date(log.timestamp).toLocaleString() %></td>
+                                <td><%= log.username %></td>
+                                <td class="<%= log.status === 'success' ? 'status-success' : 'status-failure' %>">
+                                    <%= log.status.charAt(0).toUpperCase() + log.status.slice(1) %>
+                                </td>
+                                <td><%= log.ip_address %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+
+        <a href="/" class="back-link">← Back to Login</a>
+    </div>
+</body>
+</html>
